@@ -39,12 +39,20 @@ public class Main {
 //                System.out.println("data not inserted");
 //            }
 
-            String query = String.format("UPDATE students SET marks = %f WHERE id = %d", 89.5, 2);
+//            String query = String.format("UPDATE students SET marks = %f WHERE id = %d", 89.5, 2);
+//            int rowsAffected = statement.executeUpdate(query);
+//            if (rowsAffected > 0) {
+//                System.out.println("data updated successfully");
+//            } else {
+//                System.out.println("data not updated");
+//            }
+
+            String query = "DELETE FROM students WHERE ID = 2";
             int rowsAffected = statement.executeUpdate(query);
             if (rowsAffected > 0) {
-                System.out.println("data updated successfully");
+                System.out.println("data deleted successfully");
             } else {
-                System.out.println("data not updated");
+                System.out.println("data not deleted");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
