@@ -59,15 +59,26 @@ public class Main {
             //Statement statement = connection.createStatement();
 //
 
-            String query = "SELECT MARKS FROM students WHERE id = ?";
+//            String query = "SELECT MARKS FROM students WHERE id = ?";
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setInt(1, 1);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            if (resultSet.next()) {
+//                double marks = resultSet.getDouble("marks");
+//                System.out.println("Marks: " + marks);
+//            } else {
+//                System.out.println("Marks not found");
+//            }
+
+            String query = "UPDATE students SET marks = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, 1);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                double marks = resultSet.getDouble("marks");
-                System.out.println("Marks: " + marks);
+            preparedStatement.setDouble(1, 87.5);
+            preparedStatement.setInt(2, 3);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("marks updated");
             } else {
-                System.out.println("Marks not found");
+                System.out.println("marks not updated");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
