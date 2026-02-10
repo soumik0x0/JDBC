@@ -30,12 +30,21 @@ public class Main {
 //                System.out.println("AGE: " + age);
 //                System.out.println("MARKS: " + marks);
 //            }
-            String query = String.format("INSERT INTO students(name, age, marks) VALUES('%s', %o, %f)", "Rahul", 23, 74.23);
+
+//            String query = String.format("INSERT INTO students(name, age, marks) VALUES('%s', %d, %f)", "Rahul", 23, 74.23);
+//            int rowsAffected = statement.executeUpdate(query);
+//            if (rowsAffected > 0) {
+//                System.out.println("Data inserted successfully!!");
+//            } else {
+//                System.out.println("data not inserted");
+//            }
+
+            String query = String.format("UPDATE students SET marks = %f WHERE id = %d", 89.5, 2);
             int rowsAffected = statement.executeUpdate(query);
             if (rowsAffected > 0) {
-                System.out.println("Data inserted successfully!!");
+                System.out.println("data updated successfully");
             } else {
-                System.out.println("data not inserted");
+                System.out.println("data not updated");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
