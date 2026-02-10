@@ -16,19 +16,26 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
             Statement statement = connection.createStatement();
-            String query = "select * from students";
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                int age = resultSet.getInt("age");
-                double marks = resultSet.getDouble("marks");
-
-                System.out.println("ID: " + id);
-                System.out.println("NAME: " + name);
-                System.out.println("AGE: " + age);
-                System.out.println("MARKS: " + marks);
+//            String query = "select * from students";
+//            ResultSet resultSet = statement.executeQuery(query);
+//
+//            while (resultSet.next()) {
+//                int id = resultSet.getInt("id");
+//                String name = resultSet.getString("name");
+//                int age = resultSet.getInt("age");
+//                double marks = resultSet.getDouble("marks");
+//
+//                System.out.println("ID: " + id);
+//                System.out.println("NAME: " + name);
+//                System.out.println("AGE: " + age);
+//                System.out.println("MARKS: " + marks);
+//            }
+            String query = String.format("INSERT INTO students(name, age, marks) VALUES('%s', %o, %f)", "Rahul", 23, 74.23);
+            int rowsAffected = statement.executeUpdate(query);
+            if (rowsAffected > 0) {
+                System.out.println("Data inserted successfully!!");
+            } else {
+                System.out.println("data not inserted");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
