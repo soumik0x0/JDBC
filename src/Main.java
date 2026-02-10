@@ -15,7 +15,7 @@ public class Main {
 
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
-            Statement statement = connection.createStatement();
+//            Statement statement = connection.createStatement();
 //            String query = "select * from students";
 //            ResultSet resultSet = statement.executeQuery(query);
 //
@@ -47,12 +47,26 @@ public class Main {
 //                System.out.println("data not updated");
 //            }
 
-            String query = "DELETE FROM students WHERE ID = 2";
-            int rowsAffected = statement.executeUpdate(query);
+//            String query = "DELETE FROM students WHERE ID = 2";
+//            int rowsAffected = statement.executeUpdate(query);
+//            if (rowsAffected > 0) {
+//                System.out.println("data deleted successfully");
+//            } else {
+//                System.out.println("data not deleted");
+//            }
+
+            String query = "INSERT INTO students(name, age, marks) VALUES(?, ?, ?)";
+            //Statement statement = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "Ankita");
+            preparedStatement.setInt(2, 23);
+            preparedStatement.setDouble(3, 84.7);
+
+            int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("data deleted successfully");
+                System.out.println("data added successfully");
             } else {
-                System.out.println("data not deleted");
+                System.out.println("data not added");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
