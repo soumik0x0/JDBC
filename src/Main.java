@@ -55,18 +55,19 @@ public class Main {
 //                System.out.println("data not deleted");
 //            }
 
-            String query = "INSERT INTO students(name, age, marks) VALUES(?, ?, ?)";
+//            String query = "INSERT INTO students(name, age, marks) VALUES(?, ?, ?)";
             //Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "Ankita");
-            preparedStatement.setInt(2, 23);
-            preparedStatement.setDouble(3, 84.7);
+//
 
-            int rowsAffected = preparedStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("data added successfully");
+            String query = "SELECT MARKS FROM students WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, 1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                double marks = resultSet.getDouble("marks");
+                System.out.println("Marks: " + marks);
             } else {
-                System.out.println("data not added");
+                System.out.println("Marks not found");
             }
         } catch (SQLException e) {
             //e.printStackTrace();
